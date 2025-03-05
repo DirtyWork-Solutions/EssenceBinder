@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "EssenceBinder"
+version = "0.1.0"
+description = "A brief description of EssenceBinder"
+authors = [
+    { name = "DirtyWork Solutions Limited", email = "essencebinder@open.dirtywork.solutions"}
+]
+readme = "README.md"
+license = "LICENSE.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests>=2.32.3",
+    "numpy>=2.2.3",
+    "pandas>=2.2.3",
+    "attrs>=25.3.0",
+    "pyforged>=0.2.2",
+    "bedrocked>=0.1.4",
+    "runecaller>=0.1.4"
+]
+
+[project.urls]
+Homepage = "https://open.dirtywork.solutions/EssenceBinder/"
+Repository = "https://github.com/DirtyWork-Solutions/EssenceBinder"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=6.0",
+    "pytest-cov>=2.10"
+]
+
+[tool.setuptools]
+packages = ["essencebinder"]
+
+[tool.setuptools.package-data]
+"essencebinder" = ["data/*.dat"]
+
+[tool.setuptools.scripts]
+essencebinder = "src.essencebinder:main"
+
+[tool.setuptools.entry-points.console_scripts]
+essencebinder = "src.essencebinder:main"
