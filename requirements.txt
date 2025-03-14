@@ -1,2 +1,5 @@
 setuptools~=75.8.2
-pyforged~=0.2.0
+wheel~=0.45.1
+pyforged~=0.2.2
+bedrocked~=0.1.4
+runecaller~=0.1.4

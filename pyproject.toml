@@ -10,8 +10,8 @@ authors = [
     { name = "DirtyWork Solutions Limited", email = "essencebinder@open.dirtywork.solutions"}
 ]
 readme = "README.md"
-license = "LICENSE.md"
-requires-python = ">=3.7"
+license = { file="LICENSE.md" }
+requires-python = ">=3.12"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
@@ -38,10 +38,10 @@ test = [
 ]
 
 [tool.setuptools]
-packages = ["essencebinder"]
+packages = ["src.essencebinder"]
 
 [tool.setuptools.package-data]
-"essencebinder" = ["data/*.dat"]
+"src.essencebinder" = ["data/*.dat"]
 
 [tool.setuptools.scripts]
 essencebinder = "src.essencebinder:main"
