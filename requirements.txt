@@ -1,5 +1,4 @@
-setuptools~=75.8.2
-wheel~=0.45.1
-pyforged~=0.2.2
-bedrocked~=0.1.4
-runecaller~=0.1.4
+pip~=25.0.1
+setuptools~=78.1.0
+wheel~=0.46.0
+pyforged~=0.3.0.dev4

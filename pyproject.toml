@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "EssenceBinder"
-version = "0.1.0"
+version = "0.1.1.dev0"
 description = "A brief description of EssenceBinder"
 authors = [
     { name = "DirtyWork Solutions Limited", email = "essencebinder@open.dirtywork.solutions"}
@@ -18,13 +18,7 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "requests>=2.32.3",
-    "numpy>=2.2.3",
-    "pandas>=2.2.3",
-    "attrs>=25.3.0",
-    "pyforged>=0.2.2",
-    "bedrocked>=0.1.4",
-    "runecaller>=0.1.4"
+    "pyforged~=0.3.0.dev4"
 ]
 
 [project.urls]
@@ -37,14 +31,26 @@ test = [
     "pytest-cov>=2.10"
 ]
 
+dev = []
+
+military = []
+
+society = []
+
+social = []
+
+biology = []
+
+industry = []
+
+science = []
+
+culture = []
+
+
+
 [tool.setuptools]
 packages = ["src.essencebinder"]
 
 [tool.setuptools.package-data]
 "src.essencebinder" = ["data/*.dat"]
-
-[tool.setuptools.scripts]
-essencebinder = "src.essencebinder:main"
-
-[tool.setuptools.entry-points.console_scripts]
-essencebinder = "src.essencebinder:main"
