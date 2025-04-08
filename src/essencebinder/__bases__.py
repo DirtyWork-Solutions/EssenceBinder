@@ -23,6 +23,7 @@ from typing import Optional, Union, List
 from uuid import uuid4, UUID
 
 from forged.commons.utilities.text import CaseTransformer
+from forged.elements.reporting.reported import logger as log
 
 # CaseTransformer.to_dot_case()
 
@@ -252,6 +253,11 @@ class Relations(Abstract):
         self.target = target
         self._meta['object']['label'] = label or 'unknown'
         self.definition = definition or 'unknown'
+        self.symmetric = symmetric
+        self.transitive = transitive
+        log.success(f"Relation '{self._meta['object']['label']}' created between:\n"
+                    f"{self.subject.name} ({self.subject.unique_id}) and {self.target.name} ({self.target.unique_id})"
+                    f"{' - with weighting of ' if self.is_weighted else ''}{self._weight if self.is_weighted else ''}.")
 
 
     @abstractmethod
@@ -259,7 +265,10 @@ class Relations(Abstract):
         pass
 
     def describe(self, inc_meta: bool = False) -> dict:  # TODO: Optionally include metadata in the return
-        return {
+        if inc_meta:
+            log.error("Not Implemented Yet: Including metadata in the describe of Relations.")
+
+        return {  # FIXME: turn to a variable usable in super calls? They can just append
             "label": self._meta['object']['label'],
             "definition": self.definition,
             "subject": self.subject.name,
@@ -269,12 +278,16 @@ class Relations(Abstract):
         }
 
 
+
     @property
     def is_weighted(self):
         try:
             getattr(self, '_weight')
-        except Exception:
+        except AttributeError:
+            log.debug('_weight was not found, assuming no weighting on the relation.')
             return False
+        except Exception as e:
+            log.error(f'An unexpected error occurred while checking for weighting on the relation: {e}')
         return True
 
 
@@ -289,6 +302,9 @@ class Quantities(Abstract):
         self.value = value
         self.unit = unit or 'unknown'
 
+        # Soft checks etc
+        if self.unit == 'unknown':
+            log.warning(f"Unit is unknown for a '{self.__class__.__name__}' object instance ({self.unique_id}) with value '{self.value}'.")
 
 class Propositions(Abstract):
     """
@@ -309,34 +325,16 @@ class Propositions(Abstract):
 
 
     def describe(self, inc_meta: bool = False) -> dict:  # TODO: Optionally include metadata in the return
+        if inc_meta:
+            log.error("Not Implemented Yet: Including metadata in the describe of Relations.")
+
         return {
             "content": self.content,
             "truth_value": self.truth_value,
         }
 
-class SetOrClass(Fundamentals):
+class SetOrClass(Fundamentals):  # TODO: Is this needed?
     """Abstract base class for sets or classes in Essence Binder."""
 
-    def __init__(self):
-        super().__init__()
-
-class SubclassSubrelation(MetaConcepts):
-    def __init__(self):
-        super().__init__()
-
-class Instances(MetaConcepts):
-    def __init__(self):
-        super().__init__()
-
-class Disjointness(MetaConcepts):
-    def __init__(self):
-        super().__init__()
-
-class Ranges(MetaConcepts):
-    def __init__(self):
-        super().__init__()
-
-
-class Parts(MetaConcepts):
     def __init__(self):
         super().__init__()
