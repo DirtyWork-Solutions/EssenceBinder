@@ -1,0 +1,1 @@
+from essencebinder.__bases__ import Abstract, Attributes
