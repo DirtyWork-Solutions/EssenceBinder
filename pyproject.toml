@@ -18,7 +18,10 @@ classifiers = [
     "Operating System :: OS Independent",
 ]
 dependencies = [
-    "pyforged~=0.3.0.dev4"
+    "pyforged~=0.3.0.dev4",
+    "pydantic~=2.11.3",
+    "pint~=0.24.1",
+    "nltk~=3.9.1"
 ]
 
 [project.urls]
@@ -27,8 +30,11 @@ Repository = "https://github.com/DirtyWork-Solutions/EssenceBinder"
 
 [project.optional-dependencies]
 test = [
-    "pytest>=6.0",
-    "pytest-cov>=2.10"
+    "pytest~=8.3.5",
+    "pytest-asyncio~=0.26.0",
+    "pytest-loguru~=0.2.0",
+    "pytest-cov~=6.1.1",
+
 ]
 
 dev = []

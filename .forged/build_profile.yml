@@ -1,0 +1,41 @@
+build:
+  name: 'EssenceBinder'
+  version: '0.1.0.dev0'
+  author: 'DirtyWork Solutions Limited'
+  licence: 'MIT'
+
+
+  elements:
+    configured:
+      enabled: true
+
+    events:
+      enabled: true
+
+    hooks:
+      enabled: true
+
+    mods:
+      enabled: true
+      mod_types:
+        - plugins:
+            label: 'Plugin'
+            desc: 'A plugin is a module that extends the functionality of the core system.'
+            location: null
+        - expansions:
+            label: 'Domain Expansion'
+            desc: 'A domain expansion introduces new definitions, types, and behaviors to the agnostic core.'
+            location: null
+            library:
+              source_url: 'https://'  # TODO: Add the source URL for the library
+
+  environment:
+    label: 'production'
+
+deployment:
+  host:
+    requirements:
+      - 'python>=3.13'
+
+testing:
+  base: 'pytest'

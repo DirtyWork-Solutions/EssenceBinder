@@ -2,3 +2,6 @@ pip~=25.0.1
 setuptools~=78.1.0
 wheel~=0.46.0
 pyforged~=0.3.0.dev4
+pydantic~=2.11.3
+pint~=0.24.1
+nltk~=3.9.1

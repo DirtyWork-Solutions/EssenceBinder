@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/EssenceBinder.iml" filepath="$PROJECT_DIR$/.idea/EssenceBinder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Forged/.idea/Forged.iml" filepath="$PROJECT_DIR$/../Forged/.idea/Forged.iml" />
     </modules>
   </component>
 </project>
