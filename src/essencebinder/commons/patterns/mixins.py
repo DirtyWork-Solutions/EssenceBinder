@@ -53,5 +53,55 @@ class HasWeightMixin:  # TODO: Move this out to forged??
 
 
 class HasMetadataMixin:  # TODO: Create a metadata mixin
-    pass
+    def __init__(self, metadata: dict = None):
+        self._metadata = {}
+        if metadata is not None:
+            for key, value in metadata.items():
+                self._metadata[key] = value
+
+    @property
+    def metadata(self):
+        return self._metadata
+
+
+    def get_metadata(self):
+        return self._metadata
+
+    def set_metadata(self, metadata: dict):
+        self._metadata = metadata
+
+    def add_metadata(self, key: str, value: str):
+        self._metadata[key] = value
+
+    def remove_metadata(self, key: str):
+        if key in self._metadata:
+            del self._metadata[key]
+        else:
+            raise KeyError(f"Key '{key}' not found in metadata.")
+
+    def __getitem__(self, key: str):
+        return self._metadata[key]
+
+    def __setitem__(self, key: str, value: str):
+        self._metadata[key] = value
+
+    def __delitem__(self, key: str):
+        if key in self._metadata:
+            del self._metadata[key]
+        else:
+            raise KeyError(f"Key '{key}' not found in metadata.")
+
+    def __contains__(self, key: str):
+        return key in self._metadata
+
+    def __iter__(self):
+        return iter(self._metadata)
+
+    def __len__(self):
+        return len(self._metadata)
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}(Metadata={self._metadata})"
+
+
 

@@ -25,6 +25,9 @@ from uuid import uuid4, UUID
 from forged.commons.utilities.text import CaseTransformer
 from forged.elements.reporting.reported import logger as log
 
+from essencebinder.commons.patterns.decorators import hasmetadata
+
+
 # CaseTransformer.to_dot_case()
 
 ###
@@ -46,37 +49,14 @@ class MetaConcepts(EssenceBinderBase):
 #
 ###
 
-class Entity(Fundamentals, ABC):
-    """Abstract base class for entities in the Essence Binder."""
-
-    @abstractmethod
-    def __init__(self,
-                 uid=Optional[Union[str, int, UUID]],
-                 label: Optional[str] = None,
-                 **kwargs):
-
-
-        """
-        Initialize the entity.
-
-        :param uid: a unique identifier for the entity, can be a *string, int, or UUID*.
-        :param args:
-        :param kwargs:
-        """
-        super().__init__()
-        self._meta = {
-            "object": {
-                "uid": uid or str(uuid4()),
-                "created_on": datetime.datetime.now(),
-                "created_by": "unknown",
-                "modified_on": None,
-                "modified_by": None,
+ENTITY_DEF_META = {"object": {
+                "uid": None,
+                "created_on": None,
                 "deleted_on": None,
                 "deleted_by": None,
                 "is_deleted": False,
                 "is_archived": False,
                 "archived_on": None,
-                "archived_by": None,
             },
 
             "instance": {
@@ -90,6 +70,25 @@ class Entity(Fundamentals, ABC):
                 "ontology_id": None
             }
         }
+
+@hasmetadata(ENTITY_DEF_META)
+class Entity(Fundamentals, ABC):
+    """Abstract base class for entities in the Essence Binder."""
+
+    @abstractmethod
+    def __init__(self,
+                 uid=Optional[Union[str, int, UUID]],
+                 label: Optional[str] = None,
+                 **kwargs):
+
+        """
+        Initialize the entity.
+
+        :param uid: a unique identifier for the entity, can be a *string, int, or UUID*.
+        :param args:
+        :param kwargs:
+        """
+        super().__init__()
         self._versions = OrderedDict({
         })
         self._audit = {}
