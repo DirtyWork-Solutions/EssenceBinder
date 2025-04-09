@@ -30,12 +30,16 @@ from essencebinder.commons.patterns.decorators import hasmetadata
 
 # CaseTransformer.to_dot_case()
 
+
+
+
 ###
 #
 ###
 
 class EssenceBinderBase(ABC):
     pass
+
 
 class Fundamentals(EssenceBinderBase):
     def __init__(self):
@@ -44,6 +48,9 @@ class Fundamentals(EssenceBinderBase):
 class MetaConcepts(EssenceBinderBase):
     def __init__(self):
         super().__init__()
+
+
+
 
 ###
 #
@@ -189,6 +196,8 @@ class Entity(Fundamentals, ABC):
 
 
 
+
+
 ###
 # PHYSICAL
 ###
@@ -215,9 +224,12 @@ class Processes(Physical):
         self.duration = duration
 
 
+
+
 ###
 # ABSTRACT
 ###
+
 
 class Abstract(Entity):
     """
